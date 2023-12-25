@@ -7,8 +7,11 @@ import org.apache.commons.math3.linear.EigenDecomposition;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+import java.util.HashMap;
+import java.util.Map;
 
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -40,6 +43,10 @@ public class Main {
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }
+        Map<String, Integer> users = new HashMap<>();
+        users.put("Vatsal", 18);
+        users.put("Yug", 18);
+        System.out.println(users.get("Vatsal"));
 
 
         RealMatrix matrix = MatrixUtils.createRealMatrix(matrixInput);
