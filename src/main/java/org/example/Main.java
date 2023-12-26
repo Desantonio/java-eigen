@@ -7,8 +7,11 @@ import org.apache.commons.math3.linear.EigenDecomposition;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +51,26 @@ public class Main {
         users.put("Yug", 18);
         System.out.println(users.get("Vatsal"));
 
+        String symbol = "AAPL";  // Apple stock symbol
+
+        try {
+            String stockData = Stock.getStockData(symbol);
+            System.out.println("Stock Data: " + stockData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        DerivativeStructure x = new DerivativeStructure(1, 3, 0, 2.5);
+// Basically, x --> x^2.
+        DerivativeStructure x2 = x.pow(2);
+//Linear combination: y = 4x^2 + 2x
+        DerivativeStructure y = new DerivativeStructure(4.0, x2, 2.0, x);
+        System.out.println("y    = " + y.getValue());
+        System.out.println("y'   = " + y.getPartialDerivative(1));
+        System.out.println("y''  = " + y.getPartialDerivative(2));
+        System.out.println("y''' = " + y.getPartialDerivative(3));
+
+        SwingUtilities.invokeLater(() -> SwingWindow.createAndShowGUI());
 
         RealMatrix matrix = MatrixUtils.createRealMatrix(matrixInput);
 
